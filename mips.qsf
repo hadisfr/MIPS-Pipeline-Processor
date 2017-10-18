@@ -54,8 +54,8 @@ set_global_assignment -name VERILOG_FILE MEM_stage.v
 set_global_assignment -name VERILOG_FILE Instaruction_mem.v
 set_global_assignment -name VERILOG_FILE IF_stage_reg.v
 set_global_assignment -name VERILOG_FILE IF_stage.v
-set_global_assignment -name VERILOG_FILE ID_sateg_reg.v
-set_global_assignment -name VERILOG_FILE ID_sateg.v
+set_global_assignment -name VERILOG_FILE ID_stage_reg.v
+set_global_assignment -name VERILOG_FILE ID_stage.v
 set_global_assignment -name VERILOG_FILE EXE_stage_reg.v
 set_global_assignment -name VERILOG_FILE EXE_stage.v
 set_global_assignment -name VERILOG_FILE Control_unit.v
