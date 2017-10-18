@@ -1,6 +1,5 @@
-###Quartus2###
-
 .DS_Store
+._*
 
 # ignore Quartus II generated files
 *sopc_*
@@ -40,3 +39,8 @@ simulation/
 timing/
 testbench/
 *_sim/
+
+# ignore iverilog files
+*.out
+*.vvp
+*.vcd
