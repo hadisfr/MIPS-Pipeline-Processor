@@ -1,0 +1,11 @@
+`include "IF_stage.v"
+`include "ID_stage.v"
+`include "EXE_stage.v"
+`include "MEM_stage.v"
+`include "WB_stage.v"
+`include "IF_stage_reg.v"
+`include "ID_stage_reg.v"
+`include "EXE_stage_reg.v"
+`include "MEM_stage_reg.v"
+
+`include "CPU.v"

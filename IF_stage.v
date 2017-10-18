@@ -1,3 +1,7 @@
+`include "Adder.v"
+`include "Reg.v"
+`include "Instaruction_mem.v"
+
 module IF_stage (
     input clk,    // Clock
     input rst,  // Asynchronous reset active high
