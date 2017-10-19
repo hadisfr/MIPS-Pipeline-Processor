@@ -317,5 +317,7 @@ module DE2_TOP
     s_seg s2(PC2[3:0], HEX2);
     s_seg s3(PC3[3:0], HEX3);
     s_seg s4(PC4[3:0], HEX4);
+    s_seg s5(Val1_1[3:0], HEX5);
+    s_seg s6(Val2_1[3:0], HEX6);
 
 endmodule
