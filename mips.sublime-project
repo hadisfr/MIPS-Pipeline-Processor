@@ -1,0 +1,15 @@
+{
+    "folders":
+    [
+        {
+            "path": ".",
+            "name": "MIPS",
+            "folder_exclude_patterns": ["db", "output_files", "incremental_db"],
+            "file_exclude_patterns": ["*.vcd", "*.qws", "*.out", "*.vvp", "*.vcd"],
+        }
+    ],
+    "settings": {
+        "tab_size": 4,
+        "detect_indentation": true,
+    }
+}

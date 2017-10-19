@@ -1,5 +1,6 @@
 .DS_Store
 ._*
+mips.sublime-workspace
 
 # ignore Quartus II generated files
 *sopc_*
