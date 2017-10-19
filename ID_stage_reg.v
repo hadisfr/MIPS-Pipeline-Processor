@@ -1,47 +1,27 @@
 module ID_stage_reg (
     input clk,    // Clock
     input rst,  // Asynchronous reset active high
-    // input [4:0] Dest_in,
-    // input [31:0] Reg2_in, Val2_in, Val1_in,
     input [31:0] PC_in,
-    // input [31:0] Instruction_in,
-    // input Br_taken_in,
-    // input [3:0] EXE_CMD_in,
-    // input MEM_R_EN_in, MEM_W_EN_in, WB_EN_in,
-    // output reg [4:0] Dest,
-    // output reg [31:0] Reg2, Val2, Val1,
-    output reg [31:0] PC
-    // output reg [31:0] Instruction
-    // output reg Br_taken,
-    // output reg [3:0] EXE_CMD,
-    // output reg MEM_R_EN, MEM_W_EN, WB_EN
+    input [4:0] Dest_in,
+    input [31:0] Reg2_in, Val2_in, Val1_in,
+    input Br_taken_in,
+    input [3:0] EXE_cmd_in,
+    input MEM_R_en_in, MEM_W_en_in, WB_en_in,
+    output [31:0] PC,
+    output [4:0] Dest,
+    output [31:0] Reg2, Val2, Val1,
+    output Br_taken,
+    output [3:0] EXE_cmd,
+    output MEM_R_en, MEM_W_en, WB_en
 );
-    always@(posedge clk)begin
-        if(rst)begin
-            PC <= 0;
-            // Instruction <= 0;
-            // Dest <= 5'b0;
-            // Reg2 <= 32'b0;
-            // Val2 <= 32'b0;
-            // Val1 <= 32'b0;
-            // Br_taken <= 0;
-            // EXE_CMD <= 4'b0;
-            // MEM_W_EN <= 0;
-            // MEM_R_EN <= 0;
-            // WB_EN <= 0;
-        end
-        else begin
-            PC <= PC_in;
-            // Instruction <= Instruction_in;
-            // Dest <= Dest_in;
-            // Reg2 <= Reg2_in;
-            // Val2 <= Val2_in;
-            // Val1 <= Val1_in;
-            // Br_taken <= Br_taken_in;
-            // EXE_CMD <= EXE_CMD_in;
-            // MEM_W_EN <= MEM_W_EN_in;
-            // MEM_R_EN <= MEM_R_EN_in;
-            // WB_EN <= WB_EN_in;
-        end
-    end
+    Reg #(32) PC_mem(clk, rst, 1'b1, PC_in, PC);
+    Reg #(5) Dest_mem(clk, rst, 1'b1, Dest_in, Dest);
+    Reg #(32) Reg2_mem(clk, rst, 1'b1, Reg2_in, Reg2);
+    Reg #(32) Val2_mem(clk, rst, 1'b1, Val2_in, Val2);
+    Reg #(32) Val1_mem(clk, rst, 1'b1, Val1_in, Val1);
+    Reg #(1) Br_taken_mem(clk, rst, 1'b1, Br_taken_in, Br_taken);
+    Reg #(4) EXE_cmd_mem(clk, rst, 1'b1, EXE_cmd_in, EXE_cmd);
+    Reg #(1) MEM_R_en_mem(clk, rst, 1'b1, MEM_R_en_in, MEM_R_en);
+    Reg #(1) MEM_W_en_mem(clk, rst, 1'b1, MEM_W_en_in, MEM_W_en);
+    Reg #(1) WB_en_mem(clk, rst, 1'b1, WB_en_in, WB_en);
 endmodule

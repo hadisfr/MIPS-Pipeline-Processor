@@ -10,6 +10,7 @@
 `include "EXE_stage_reg.v"
 `include "MEM_stage_reg.v"
 `include "Adder.v"
+`include "MUX.v"
 `include "Reg.v"
 `include "Instaruction_mem.v"
 

@@ -2,33 +2,20 @@ module MEM_stage_reg (
     input clk,    // Clock
     input rst,  // Asynchronous reset active high
     input [31:0] PC_in,
-    // input WB_EN_in, MEM_R_EN_in,
-    // input [31:0] ALU_result_in,
-    // input [31:0] MEM_read_value_in,
-    // input [4:0] Dest_in,
-    // output reg WB_EN, MEM_R_EN,
-    // output reg [31:0] ALU_result,
-    // output reg [31:0] MEM_read_value,
-    // output reg [4:0] Dest
-    output reg [31:0] PC
+    input [31:0] ALU_result_in,
+    input [31:0] MEM_R_value_in,
+    input [4:0] Dest_in,
+    input MEM_R_en_in, WB_en_in,
+    output [31:0] PC,
+    output [31:0] ALU_result,
+    output [31:0] MEM_R_value,
+    output [4:0] Dest,
+    output MEM_R_en, WB_en
 );
-
-    always @(posedge clk) begin
-        if(rst) begin
-            PC <= 0;
-            // WB_EN <= 0;
-            // MEM_R_EN <= 0;
-            // ALU_result <= 0;
-            // MEM_read_value <= 0;
-            // Dest <= 0;
-        end else begin
-            PC <= PC_in;
-            // WB_EN <= WB_EN_in;
-            // MEM_R_EN <= MEM_R_EN_in;
-            // ALU_result <= ALU_result_in;
-            // MEM_read_value <= MEM_read_value_in;
-            // Dest <= Dest_in;
-        end
-    end
-
+    Reg #(32) PC_mem(clk, rst, 1'b1, PC_in, PC);
+    Reg #(32) ALU_result_mem(clk, rst, 1'b1, ALU_result_in, ALU_result);
+    Reg #(32) MEM_R_value_mem(clk, rst, 1'b1, MEM_R_value_in, MEM_R_value);
+    Reg #(5) Dest_mem(clk, rst, 1'b1, Dest_in, Dest);
+    Reg #(1) MEM_R_en_mem(clk, rst, 1'b1, MEM_R_en_in, MEM_R_en);
+    Reg #(1) WB_en_mem(clk, rst, 1'b1, WB_en_in, WB_en);
 endmodule
