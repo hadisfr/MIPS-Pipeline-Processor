@@ -2,20 +2,20 @@ module ID_stage_reg (
     input clk,    // Clock
     input rst,  // Asynchronous reset active high
     input [31:0] PC_in,
-    input [4:0] Dest_in,
+    input [4:0] dest_in,
     input [31:0] Reg2_in, Val2_in, Val1_in,
     input Br_taken_in,
     input [3:0] EXE_cmd_in,
     input MEM_R_en_in, MEM_W_en_in, WB_en_in,
     output [31:0] PC,
-    output [4:0] Dest,
+    output [4:0] dest,
     output [31:0] Reg2, Val2, Val1,
     output Br_taken,
     output [3:0] EXE_cmd,
     output MEM_R_en, MEM_W_en, WB_en
 );
     Reg #(32) PC_mem(clk, rst, 1'b1, PC_in, PC);
-    Reg #(5) Dest_mem(clk, rst, 1'b1, Dest_in, Dest);
+    Reg #(5) dest_mem(clk, rst, 1'b1, dest_in, dest);
     Reg #(32) Reg2_mem(clk, rst, 1'b1, Reg2_in, Reg2);
     Reg #(32) Val2_mem(clk, rst, 1'b1, Val2_in, Val2);
     Reg #(32) Val1_mem(clk, rst, 1'b1, Val1_in, Val1);

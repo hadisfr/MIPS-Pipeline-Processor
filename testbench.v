@@ -13,6 +13,8 @@
 `include "MUX.v"
 `include "Reg.v"
 `include "Instaruction_mem.v"
+`include "Control_unit.v"
+`include "Register_file.v"
 
 module testbench ();
     reg clk, rst;
@@ -27,9 +29,9 @@ module testbench ();
     initial
         #1000 $finish();
     initial begin
-        $dumpvars();
+        $dumpvars;
         $monitor("PC(%5t): %h %h %h %h %h", $time, PC0[3:0], PC1[3:0], PC2[3:0], PC3[3:0], PC4[3:0]);
-        // $monitor("Isntr(%5t): %h %h %h %h %h", $time, Instruction0[3:0], Instruction1[3:0], Instruction2[3:0], Instruction3[3:0], Instruction4[3:0]);
+        // $monitor("Isntr(%5t): %h %h %h %h %h", $time, instruction0[3:0], instruction1[3:0], instruction2[3:0], instruction3[3:0], instruction4[3:0]);
     end
     /* verilator lint_on STMTDLY */
     `include "CPU.v"
