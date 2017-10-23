@@ -22,7 +22,7 @@ module testbench ();
     initial begin
         rst <= 1;
         clk <= 1;
-        #7 rst <= 0;
+        #70 rst <= 0;
     end
     always
         #50 clk <= ~clk;
