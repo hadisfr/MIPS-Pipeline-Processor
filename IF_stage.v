@@ -12,5 +12,5 @@ module IF_stage (
     MUX #(16) PC_MUX(Br_taken, 16'd4, Br_offset, PC_offset);
     Adder #(32) PC_Adder(PC, { 16'b0, PC_offset }, {PC_cout, PC_in});
     Reg #(32) PC_mem(clk, rst, 1'b1, PC_in, PC);
-    Instaruction_mem #(32) instaruction_mem(rst, PC, instruction);
+    Instaruction_mem #(32) instaruction_mem(clk, rst, PC, instruction);
 endmodule
