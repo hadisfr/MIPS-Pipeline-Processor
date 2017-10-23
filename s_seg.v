@@ -15,7 +15,7 @@ module s_seg(input [3:0] count, output reg [6:0] hex);
             4'd10: hex = 7'b0001000;
             4'd11: hex = 7'b0000011;
             4'd12: hex = 7'b1000110;
-            4'd13: hex = 7'b1000001;
+            4'd13: hex = 7'b0100001;
             4'd14: hex = 7'b0000110;
             4'd15: hex = 7'b0001110;
             default : hex = 7'b0;
