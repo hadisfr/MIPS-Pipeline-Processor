@@ -4,6 +4,8 @@ wire [3:0] EXE_cmd_1, EXE_cmd_2;
 wire flush;
 wire Br_taken1, Br_taken2;
 wire [15:0] Br_offset;
+wire [4:0] MEM_src1, MEM_src2;
+wire [31:0] MEM_Reg1, MEM_Reg2;
 wire [4:0] dest1, dest2, dest3, dest4;
 wire [31:0] Reg2_1, Val2_1, Val1_1,
             Reg2_2, Val2_2, Val1_2,
@@ -18,13 +20,18 @@ wire [31:0] WB_value;
 
 assign flush = Br_taken1 | Br_taken2;
 
+Register_file #(32) register_file(
+        clk, rst, MEM_src1, MEM_src2, dest4, WB_value, WB_en_4,
+        MEM_Reg1, MEM_Reg2
+    );
+
 IF_stage P0 (
         clk, rst, Br_taken2, Br_offset,
         PC0, instruction0
     );
 ID_stage P1 (
-        clk, rst, instruction1, dest4, WB_value, WB_en_4,
-        dest1, Reg2_1, Val2_1, Val1_1, Br_taken1, EXE_cmd_1, MEM_R_en_1, MEM_W_en_1, WB_en_1
+        clk, rst, instruction1, MEM_Reg1, MEM_Reg2,
+        MEM_src1, MEM_src2, dest1, Reg2_1, Val2_1, Val1_1, Br_taken1, EXE_cmd_1, MEM_R_en_1, MEM_W_en_1, WB_en_1
     );
 EXE_stage P2 (
         clk, rst, Val2_2, Val1_2, EXE_cmd_2,
