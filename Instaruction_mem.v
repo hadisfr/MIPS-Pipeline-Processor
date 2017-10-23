@@ -1,10 +1,11 @@
 module Instaruction_mem #(parameter n = 32) (
+    input clk,
     input rst,
     input [n-1:0] PC,
     output [n-1:0] instruction
 );
     reg [n-1:0] _Instaruction_mem [0:7];
-    always @(negedge rst) begin
+    always @(posedge clk) begin
         _Instaruction_mem[0] = 32'b000000_00000_00001_00010_00000000000;
         _Instaruction_mem[1] = 32'b000000_00000_00011_00100_00000000000;
         _Instaruction_mem[2] = 32'b000000_00000_00101_00110_00000000000;
