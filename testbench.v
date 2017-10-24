@@ -15,6 +15,8 @@
 `include "Instaruction_mem.v"
 `include "Control_unit.v"
 `include "Register_file.v"
+`include "Sign_extend.v"
+`include "Condition_check.v"
 
 module testbench ();
     reg clk, rst;
