@@ -67,5 +67,5 @@ module Instaruction_mem #(parameter n = 32) (
         _Instaruction_mem[58] = 0;
         _Instaruction_mem[59] = 0;
     end
-    assign instruction = _Instaruction_mem[PC[4:2]];
+    assign instruction = _Instaruction_mem[PC[7:2]];
 endmodule

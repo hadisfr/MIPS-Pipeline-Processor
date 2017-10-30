@@ -19,6 +19,7 @@ wire [31:0] ALU_result2, ALU_result3, ALU_result4;
 wire [31:0] WB_value;
 
 assign flush = Br_taken1 | Br_taken2;
+assign Br_offset = Val2_2[15:0];
 
 Register_file #(32) register_file(
         clk, rst, MEM_src1, MEM_src2, dest4, WB_value, WB_en_4,

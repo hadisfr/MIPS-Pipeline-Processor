@@ -17,6 +17,7 @@
 `include "Register_file.v"
 `include "Sign_extend.v"
 `include "Condition_check.v"
+`include "ALU.v"
 
 module testbench ();
     reg clk, rst;
@@ -29,7 +30,7 @@ module testbench ();
     always
         #50 clk <= ~clk;
     initial
-        #1000 $finish();
+        #5000 $finish();
     initial begin
         $dumpvars;
         $monitor("PC(%5t): %h %h %h %h %h", $time, PC0[3:0], PC1[3:0], PC2[3:0], PC3[3:0], PC4[3:0]);
