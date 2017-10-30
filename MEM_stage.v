@@ -6,5 +6,5 @@ module MEM_stage (
     input MEM_R_en, MEM_W_en,
     output [31:0] MEM_R_value
 );
-    assign MEM_R_value = 32'b0;
+    RAM _RAM(clk, rst, ALU_result, ST_val, MEM_R_en, MEM_W_en, MEM_R_value);
 endmodule

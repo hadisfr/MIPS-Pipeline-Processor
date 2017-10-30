@@ -18,6 +18,7 @@
 `include "Sign_extend.v"
 `include "Condition_check.v"
 `include "ALU.v"
+`include "RAM.v"
 
 module testbench ();
     reg clk, rst;
