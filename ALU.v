@@ -13,7 +13,7 @@ module ALU(
             ADD: c = a + b;
             SUB: c = a - b;
             LEFT: c = a << b;
-            SRIGHT: c = a >> b;
+            SRIGHT: c = a >>> b;
             RIGHT: c = a >> b;
             default: c = 0;
         endcase
