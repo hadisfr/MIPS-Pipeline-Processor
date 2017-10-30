@@ -4,7 +4,7 @@ module Instaruction_mem #(parameter n = 32) (
     input [n-1:0] PC,
     output [n-1:0] instruction
 );
-    reg [n-1:0] _Instaruction_mem [0:60];
+    reg [n-1:0] _Instaruction_mem [0:59];
     always @(posedge clk) begin
         _Instaruction_mem[0] = 32'b100000_00001_00000_00000_00000001010;//-- Addi r1,r0,10
         _Instaruction_mem[1] = 32'b000001_00010_00000_00001_00000000000;//-- Add  r2,r0,r1
