@@ -26,7 +26,7 @@ module Control_unit (
             SRL: begin WB_en = 1; EXE_cmd = ALU_RIGHT; end
             ADDI: begin WB_en = 1; EXE_cmd = ALU_ADD; is_immediate = 1; end
             SUBI: begin WB_en = 1; EXE_cmd = ALU_SUB; is_immediate = 1; end
-            LD: begin WB_en = 1; EXE_cmd = ALU_ADD; is_immediate = 1; MEM_R_en = 1; WB_en = 1; end
+            LD: begin WB_en = 1; EXE_cmd = ALU_ADD; is_immediate = 1; MEM_R_en = 1; end
             ST: begin EXE_cmd = ALU_ADD; is_immediate = 1; ST_or_BNE = 1; MEM_W_en = 1; end
             BEZ: begin is_immediate = 1; is_branch_or_jump = 1; branch_type = BR_TYPE_BEZ; end
             BNE: begin is_immediate = 1; ST_or_BNE = 1; is_branch_or_jump = 1; branch_type = BR_TYPE_BNE; end
