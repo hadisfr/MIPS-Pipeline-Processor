@@ -10,7 +10,7 @@ module IF_stage (
     wire [15:0] PC_offset, Br_offset_final;
     wire [31:0] PC_offset_ext;
     wire PC_cout;
-    assign Br_offset_final = Br_offset + 1;
+    assign Br_offset_final = Br_offset - 1;
     MUX #(16) PC_MUX(Br_taken, 16'd1, Br_offset_final, PC_offset);
     Sign_extend #(16) PC_sign_extend(PC_offset, PC_offset_ext);
     Adder #(32) PC_Adder(PC, {PC_offset_ext[29:0], 2'b0}, {PC_cout, PC_in});
