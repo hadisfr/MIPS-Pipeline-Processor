@@ -98,7 +98,7 @@ module Instaruction_mem #(parameter n = 32) (
         _Instaruction_mem[89] = 32'b100100_01001_00001_00000_00000011100;//-- ld r9,r1,28 
         _Instaruction_mem[90] = 32'b100100_01010_00001_00000_00000100000;//-- ld r10,r1,32 
         _Instaruction_mem[91] = 32'b100100_01011_00001_00000_00000100100;//-- ld r11,r1,36 
-        _Instaruction_mem[92] = 32'b101010_00000_00000_11111_11111111100;//-- JMP  -4
+        _Instaruction_mem[92] = 32'b101010_00000_00000_11111_11111111111;//-- JMP  -1
     end
     assign instruction = _Instaruction_mem[PC[8:2]];
 endmodule
