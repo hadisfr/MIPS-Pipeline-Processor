@@ -4,7 +4,7 @@ module RAM (
     input [31:0] addr_interface,
     input [31:0] data_in,
     input MEM_R_en, MEM_W_en,
-    output reg [31:0] data_out
+    output [31:0] data_out
 );
     reg [7:0] _RAM[0:255];
     wire [7:0] addr;
@@ -24,9 +24,10 @@ module RAM (
         end
         else begin
             if(MEM_W_en)
-                {_RAM[addr], _RAM[addr + 1], _RAM[addr + 2], _RAM[addr + 3]} = data_in;
-            if(MEM_R_en)
-                data_out = {_RAM[addr], _RAM[addr + 1], _RAM[addr + 2], _RAM[addr + 3]};
+                {_RAM[addr], _RAM[addr + 1], _RAM[addr + 2], _RAM[addr + 3]} <= data_in;
+            // if(MEM_R_en)
+            //     data_out <= {_RAM[addr], _RAM[addr + 1], _RAM[addr + 2], _RAM[addr + 3]};
         end
     end
+    assign data_out = MEM_R_en ? {_RAM[addr], _RAM[addr + 1], _RAM[addr + 2], _RAM[addr + 3]} : 32'b0;
 endmodule
