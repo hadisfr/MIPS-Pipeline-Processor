@@ -19,6 +19,7 @@
 `include "Condition_check.v"
 `include "ALU.v"
 `include "RAM.v"
+`include "Hazard_detection.v"
 
 module testbench ();
     reg clk, rst;

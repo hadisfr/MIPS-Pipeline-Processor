@@ -3,20 +3,22 @@ module ID_stage (
     input rst,  // Asynchronous reset active high
     input [31:0] instruction,
     input [31:0] MEM_Reg1, MEM_Reg2,
+    input hazard_detected,
     output [4:0] MEM_src1, MEM_src2,
     output [4:0] dest,
     output [31:0] Reg2, Val2, Val1,
-    output Br_taken,
-    output [3:0] EXE_cmd,
-    output MEM_R_en, MEM_W_en, WB_en
+    output Br_taken, is_immediate, ST_or_BNE,
+    output [3:0] EXE_cmd_hazard_protected,
+    output MEM_R_en_hazard_protected, MEM_W_en_hazard_protected, WB_en_hazard_protected
 );
     wire [5:0] op_code;
     wire [4:0] src1, src2;
     wire [15:0] immediate;
     wire [31:0] immediate_extended;
-    wire is_immediate, ST_or_BNE, is_branch_or_jump,
-         is_jump;
+    wire is_branch_or_jump, is_jump;
     wire [1:0] branch_type;
+    wire [3:0] EXE_cmd;
+    wire MEM_R_en, MEM_W_en, WB_en;
     assign op_code = instruction[31:26];
     assign dest = instruction[25:21];
     assign src1 = instruction[20:16];
@@ -38,5 +40,12 @@ module ID_stage (
         branch_type, MEM_Reg1, MEM_Reg2,
         is_jump
     );
+
+    MUX #(7) hazard_protection(
+            hazard_detected,
+            {EXE_cmd, MEM_R_en, MEM_W_en, WB_en},
+            0,
+            {EXE_cmd_hazard_protected, MEM_R_en_hazard_protected, MEM_W_en_hazard_protected, WB_en_hazard_protected}
+        );
 	 
 endmodule

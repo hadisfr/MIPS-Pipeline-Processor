@@ -3,6 +3,8 @@ wire [31:0] instruction0, instruction1;
 wire [3:0] EXE_cmd_1, EXE_cmd_2;
 wire flush;
 wire Br_taken1, Br_taken2;
+wire is_immediate, ST_or_BNE;
+wire hazard_detected;
 wire [15:0] Br_offset;
 wire [4:0] MEM_src1, MEM_src2;
 wire [31:0] MEM_Reg1, MEM_Reg2;
@@ -26,13 +28,19 @@ Register_file #(32) register_file(
         MEM_Reg1, MEM_Reg2
     );
 
+Hazard_detection hazard_detection(
+        MEM_src1, MEM_src2, dest2, dest3, WB_en_2, WB_en_3, is_immediate, ST_or_BNE,
+        hazard_detected
+    );
+
 IF_stage P0 (
-        clk, rst, Br_taken2, Br_offset,
+        clk, rst, Br_taken2, Br_offset, hazard_detected,
         PC0, instruction0
     );
 ID_stage P1 (
-        clk, rst, instruction1, MEM_Reg1, MEM_Reg2,
-        MEM_src1, MEM_src2, dest1, Reg2_1, Val2_1, Val1_1, Br_taken1, EXE_cmd_1, MEM_R_en_1, MEM_W_en_1, WB_en_1
+        clk, rst, instruction1, MEM_Reg1, MEM_Reg2, hazard_detected,
+        MEM_src1, MEM_src2, dest1, Reg2_1, Val2_1, Val1_1,
+        Br_taken1, is_immediate, ST_or_BNE, EXE_cmd_1, MEM_R_en_1, MEM_W_en_1, WB_en_1
     );
 EXE_stage P2 (
         clk, rst, Val2_2, Val1_2, EXE_cmd_2,
@@ -48,7 +56,7 @@ WB_stage P4 (
     );
 
 IF_stage_reg Q0 (
-        clk, rst, flush, PC0, instruction0,
+        clk, rst, flush, PC0, instruction0, hazard_detected,
         PC1, instruction1
     );
 ID_stage_reg Q1 (

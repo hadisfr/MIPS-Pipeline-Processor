@@ -3,6 +3,7 @@ module IF_stage (
     input rst,  // Asynchronous reset active high
     input Br_taken,
     input [15:0] Br_offset,
+    input hazard_detected,
     output [31:0] PC,
     output [31:0] instruction
 );
@@ -14,6 +15,6 @@ module IF_stage (
     MUX #(16) PC_MUX(Br_taken, 16'd1, Br_offset_final, PC_offset);
     Sign_extend #(16) PC_sign_extend(PC_offset, PC_offset_ext);
     Adder #(32) PC_Adder(PC, {PC_offset_ext[29:0], 2'b0}, {PC_cout, PC_in});
-    Reg #(32) PC_mem(clk, rst, 1'b1, PC_in, PC);
+    Reg #(32) PC_mem(clk, rst, ~hazard_detected, PC_in, PC);
     Instaruction_mem #(32) instaruction_mem(clk, rst, PC, instruction);
 endmodule
