@@ -23,12 +23,12 @@ wire [31:0] WB_value;
 assign flush = Br_taken1 | Br_taken2;
 assign Br_offset = Val2_2[15:0];
 
-Register_file #(32) register_file(
+Register_file #(32) register_file (
         clk, rst, MEM_src1, MEM_src2, dest4, WB_value, WB_en_4,
         MEM_Reg1, MEM_Reg2
     );
 
-Hazard_detection hazard_detection(
+Hazard_detection hazard_detection (
         MEM_src1, MEM_src2, dest2, dest3, WB_en_2, WB_en_3, is_immediate, ST_or_BNE,
         hazard_detected
     );
