@@ -32,7 +32,7 @@ module testbench ();
     always
         #50 clk <= ~clk;
     initial
-        #100000 $finish();
+        #30000 $finish();
     initial begin
         $dumpvars;
         $monitor("%5t: %5d", $time, PC0);
