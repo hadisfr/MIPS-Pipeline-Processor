@@ -1,7 +1,7 @@
 for j in $@; do
     if [[ ${j} == "--lint" ]]; then
         for i in *.v; do
-            if [[ ${i} != "testbench.v" && ${i} != "CPU.v" ]]; then
+            if [[ ${i} != "testbench.v" && ${i} != "CPU.v" && ${i} != "benchmark.v" ]]; then
                 verilator --lint-only ${i}
             fi
         done
