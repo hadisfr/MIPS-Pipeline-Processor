@@ -22,6 +22,7 @@ mips.sublime-workspace
 *.eqn
 *.html
 *.jpg
+*.csv
 *.bak
 *.qar
 *.sopc_builder

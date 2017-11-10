@@ -44,7 +44,7 @@ module ID_stage (
     MUX #(7) hazard_protection(
             hazard_detected,
             {EXE_cmd, MEM_R_en, MEM_W_en, WB_en},
-            0,
+            7'b0,
             {EXE_cmd_hazard_protected, MEM_R_en_hazard_protected, MEM_W_en_hazard_protected, WB_en_hazard_protected}
         );
 	 

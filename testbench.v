@@ -32,11 +32,13 @@ module testbench ();
     always
         #50 clk <= ~clk;
     initial
-        #30000 $finish();
+        #100000 $finish();
     initial begin
         $dumpvars;
         $monitor("%5t: %5d", $time, PC0);
     end
     /* verilator lint_on STMTDLY */
     `include "CPU.v"
+    wire [29:0] PC;
+    assign PC = PC0[31:2];
 endmodule
