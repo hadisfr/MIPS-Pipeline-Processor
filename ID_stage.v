@@ -7,7 +7,7 @@ module ID_stage (
     output [4:0] MEM_src1, MEM_src2,
     output [4:0] dest,
     output [31:0] Reg2, Val2, Val1,
-    output Br_taken, is_immediate, ST_or_BNE,
+    output Br_taken_hazard_protected, is_immediate, ST_or_BNE,
     output [3:0] EXE_cmd_hazard_protected,
     output MEM_R_en_hazard_protected, MEM_W_en_hazard_protected, WB_en_hazard_protected
 );
@@ -19,6 +19,7 @@ module ID_stage (
     wire [1:0] branch_type;
     wire [3:0] EXE_cmd;
     wire MEM_R_en, MEM_W_en, WB_en;
+    wire Br_taken;
     assign op_code = instruction[31:26];
     assign dest = instruction[25:21];
     assign src1 = instruction[20:16];
@@ -41,11 +42,11 @@ module ID_stage (
         is_jump
     );
 
-    MUX #(7) hazard_protection(
+    MUX #(8) hazard_protection(
             hazard_detected,
-            {EXE_cmd, MEM_R_en, MEM_W_en, WB_en},
-            7'b0,
-            {EXE_cmd_hazard_protected, MEM_R_en_hazard_protected, MEM_W_en_hazard_protected, WB_en_hazard_protected}
+            {EXE_cmd, MEM_R_en, MEM_W_en, WB_en, Br_taken},
+            8'b0,
+            {EXE_cmd_hazard_protected, MEM_R_en_hazard_protected, MEM_W_en_hazard_protected, WB_en_hazard_protected, Br_taken_hazard_protected}
         );
 	 
 endmodule
