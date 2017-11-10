@@ -55,4 +55,4 @@ ld r8,r1,24
 ld r9,r1,28 
 ld r10,r1,32 
 ld r11,r1,36 
-jmp  -4
+jmp  -1
