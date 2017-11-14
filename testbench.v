@@ -20,6 +20,8 @@
 `include "ALU.v"
 `include "RAM.v"
 `include "Hazard_detection.v"
+`include "Forwarding_unit.v"
+`include "MUX_3_1.v"
 
 module testbench ();
     reg clk, rst;
@@ -32,7 +34,7 @@ module testbench ();
     always
         #50 clk <= ~clk;
     initial
-        #30000 $finish();
+        #27000 $finish();
     initial begin
         $dumpvars;
         $monitor("%5t: %5d", $time, PC0);

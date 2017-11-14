@@ -5,6 +5,7 @@ module ID_stage (
     input [31:0] MEM_Reg1, MEM_Reg2,
     input hazard_detected,
     output [4:0] MEM_src1, MEM_src2,
+        MEM_src1_fd, MEM_src2_fd,
     output [4:0] dest,
     output [31:0] Reg2, Val2, Val1,
     output Br_taken_hazard_protected, is_immediate, ST_or_BNE,
@@ -20,11 +21,14 @@ module ID_stage (
     wire [3:0] EXE_cmd;
     wire MEM_R_en, MEM_W_en, WB_en;
     wire Br_taken;
+    wire [31:0] MEM_Reg1_fd, MEM_Reg2_fd;
     assign op_code = instruction[31:26];
     assign dest = instruction[25:21];
     assign src1 = instruction[20:16];
     assign src2 = instruction[15:11];
     assign MEM_src1 = src1;
+    assign MEM_src1_fd = src1;
+    MUX #(5) MEM_src2_fd_MUX(is_immediate, src2, 5'b0, MEM_src2_fd);
     assign immediate = instruction[15:0];
     Control_unit control_unit(
         op_code,
