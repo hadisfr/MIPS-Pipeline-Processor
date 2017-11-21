@@ -37,7 +37,7 @@ Hazard_detection hazard_detection(
     );
 
 Forwarding_unit forwarding_unit(
-        MEM_src1_fd2, MEM_src2_fd2, dest2, dest3, dest4, MEM_W_en_2, WB_en_3, WB_en_4, has_forwarding,
+        MEM_src1_fd2, MEM_src2_fd2, dest2, dest3, dest4, MEM_W_en_2, WB_en_3, WB_en_4,
         val1_s, val2_s, ST_value_s
     );
 
