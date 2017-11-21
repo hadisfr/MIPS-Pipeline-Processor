@@ -24,11 +24,12 @@
 `include "MUX_3_1.v"
 
 module testbench ();
-    reg clk, rst;
+    reg clk, rst, has_forwarding;
     /* verilator lint_off STMTDLY */
     initial begin
         rst <= 1;
         clk <= 1;
+        has_forwarding <= 1;
         #70 rst <= 0;
     end
     always

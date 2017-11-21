@@ -302,10 +302,11 @@ module DE2_TOP
     inout   [35:0]  GPIO_0;                 //  GPIO Connection 0
     inout   [35:0]  GPIO_1;                 //  GPIO Connection 1
 
-    wire clk, rst;
+    wire clk, rst, has_forwarding;
 
     assign clk = SW[0] ? KEY[0] : CLOCK_50;
     assign rst = SW[1];
+    assign has_forwarding = SW[2];
 
     assign LEDG[0] = clk;
     assign LEDR[0] = rst;

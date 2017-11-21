@@ -32,12 +32,12 @@ Register_file #(32) register_file(
     );
 
 Hazard_detection hazard_detection(
-        MEM_src1, MEM_src2, dest2, dest3, WB_en_2, WB_en_3, is_immediate, ST_or_BNE,
+        MEM_src1, MEM_src2, dest2, dest3, WB_en_2, WB_en_3, is_immediate, ST_or_BNE, has_forwarding,
         hazard_detected
     );
 
 Forwarding_unit forwarding_unit(
-        MEM_src1_fd2, MEM_src2_fd2, dest2, dest3, dest4, MEM_W_en_2, WB_en_3, WB_en_4,
+        MEM_src1_fd2, MEM_src2_fd2, dest2, dest3, dest4, MEM_W_en_2, WB_en_3, WB_en_4, has_forwarding,
         val1_s, val2_s, ST_value_s
     );
 
