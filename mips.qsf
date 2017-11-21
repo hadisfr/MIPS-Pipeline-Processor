@@ -797,28 +797,6 @@ set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualif
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[97] -to "IF_stage_reg:Q0|instruction[7]" -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[98] -to "IF_stage_reg:Q0|instruction[8]" -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[99] -to "IF_stage_reg:Q0|instruction[9]" -section_id auto_signaltap_0
-set_global_assignment -name VERILOG_FILE RAM.v
-set_global_assignment -name VERILOG_FILE ALU.v
-set_global_assignment -name VERILOG_FILE Sign_extend.v
-set_global_assignment -name VERILOG_FILE Condition_check.v
-set_global_assignment -name VERILOG_FILE s_seg.v
-set_global_assignment -name VERILOG_FILE MUX.v
-set_global_assignment -name VERILOG_FILE WB_stage.v
-set_global_assignment -name VERILOG_FILE Register_file.v
-set_global_assignment -name VERILOG_FILE Reg.v
-set_global_assignment -name VERILOG_FILE MEM_stage_reg.v
-set_global_assignment -name VERILOG_FILE MEM_stage.v
-set_global_assignment -name VERILOG_FILE Instaruction_mem.v
-set_global_assignment -name VERILOG_FILE IF_stage_reg.v
-set_global_assignment -name VERILOG_FILE IF_stage.v
-set_global_assignment -name VERILOG_FILE ID_stage_reg.v
-set_global_assignment -name VERILOG_FILE ID_stage.v
-set_global_assignment -name VERILOG_FILE EXE_stage_reg.v
-set_global_assignment -name VERILOG_FILE EXE_stage.v
-set_global_assignment -name VERILOG_FILE Control_unit.v
-set_global_assignment -name VERILOG_FILE Adder.v
-set_global_assignment -name VERILOG_FILE DE2_TOP.v
-set_global_assignment -name SIGNALTAP_FILE s2.stp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[100] -to "MEM_stage:P3|RAM:_RAM|_RAM[0][0]" -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[101] -to "MEM_stage:P3|RAM:_RAM|_RAM[0][1]" -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[102] -to "MEM_stage:P3|RAM:_RAM|_RAM[0][2]" -section_id auto_signaltap_0
@@ -2372,5 +2350,29 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=7691" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=33544" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=sld_reserved_mips_auto_signaltap_0_1_af8f," -section_id auto_signaltap_0
+set_global_assignment -name VERILOG_FILE Hazard_detection.v
+set_global_assignment -name VERILOG_FILE Forwarding_unit.v
+set_global_assignment -name VERILOG_FILE RAM.v
+set_global_assignment -name VERILOG_FILE ALU.v
+set_global_assignment -name VERILOG_FILE Sign_extend.v
+set_global_assignment -name VERILOG_FILE Condition_check.v
+set_global_assignment -name VERILOG_FILE s_seg.v
+set_global_assignment -name VERILOG_FILE MUX.v
+set_global_assignment -name VERILOG_FILE WB_stage.v
+set_global_assignment -name VERILOG_FILE Register_file.v
+set_global_assignment -name VERILOG_FILE Reg.v
+set_global_assignment -name VERILOG_FILE MEM_stage_reg.v
+set_global_assignment -name VERILOG_FILE MEM_stage.v
+set_global_assignment -name VERILOG_FILE Instaruction_mem.v
+set_global_assignment -name VERILOG_FILE IF_stage_reg.v
+set_global_assignment -name VERILOG_FILE IF_stage.v
+set_global_assignment -name VERILOG_FILE ID_stage_reg.v
+set_global_assignment -name VERILOG_FILE ID_stage.v
+set_global_assignment -name VERILOG_FILE EXE_stage_reg.v
+set_global_assignment -name VERILOG_FILE EXE_stage.v
+set_global_assignment -name VERILOG_FILE Control_unit.v
+set_global_assignment -name VERILOG_FILE Adder.v
+set_global_assignment -name VERILOG_FILE DE2_TOP.v
+set_global_assignment -name SIGNALTAP_FILE s2.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE "E:/CALab/Lab1/s2_auto_stripped.stp"
