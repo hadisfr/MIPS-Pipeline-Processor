@@ -20,7 +20,7 @@ module Hazard_detection (
             && (dest2 != 5'b0) && (dest2 == MEM_src1 || (dest2 == MEM_src2 && is_MEM_src2_important))
         )
         || (
-            ((MEM_R_en_3 || WB_en_3) && is_branch_or_jump)
+            ((MEM_R_en_3 || WB_en_3) && is_branch_or_jump) // MEM_R_en_3 || WB_en_3 = WB_en_3
             && (dest3 != 5'b0) && (dest3 == MEM_src1 || (dest3 == MEM_src2 && is_MEM_src2_important))
         );
 
