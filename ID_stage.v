@@ -8,7 +8,7 @@ module ID_stage (
         MEM_src1_fd, MEM_src2_fd,
     output [4:0] dest,
     output [31:0] Reg2, Val2, Val1,
-    output Br_taken_hazard_protected, is_immediate, ST_or_BNE,
+    output Br_taken_hazard_protected, is_immediate, ST_or_BNE, is_branch_or_jump,
     output [3:0] EXE_cmd_hazard_protected,
     output MEM_R_en_hazard_protected, MEM_W_en_hazard_protected, WB_en_hazard_protected
 );
@@ -16,7 +16,7 @@ module ID_stage (
     wire [4:0] src1, src2;
     wire [15:0] immediate;
     wire [31:0] immediate_extended;
-    wire is_branch_or_jump, is_jump;
+    wire is_jump;
     wire [1:0] branch_type;
     wire [3:0] EXE_cmd;
     wire MEM_R_en, MEM_W_en, WB_en;
