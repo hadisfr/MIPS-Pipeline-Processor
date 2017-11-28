@@ -18,10 +18,11 @@
 `include "Sign_extend.v"
 `include "Condition_check.v"
 `include "ALU.v"
-`include "RAM.v"
+// `include "RAM.v"
 `include "Hazard_detection.v"
 `include "Forwarding_unit.v"
 `include "MUX_3_1.v"
+`include "SRAM_CTRL.v"
 
 module testbench ();
     reg clk, rst, has_forwarding;

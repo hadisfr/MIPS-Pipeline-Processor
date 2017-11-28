@@ -1,7 +1,7 @@
 wire [31:0] PC0, PC1, PC2, PC3, PC4;
 wire [31:0] instruction0, instruction1;
 wire [3:0] EXE_cmd_1, EXE_cmd_2;
-wire flush;
+wire flush, SRAM_freeze;
 wire Br_taken1, Br_taken2;
 wire is_immediate, ST_or_BNE, is_branch_or_jump;
 wire hazard_detected;
@@ -57,7 +57,8 @@ EXE_stage P2(
     );
 MEM_stage P3(
         clk, rst, ALU_result3, ST_value3, MEM_R_en_3, MEM_W_en_3,
-        MEM_R_value3
+        MEM_R_value3, SRAM_freeze,
+        SRAM_DQ, SRAM_ADDR, SRAM_UB_N, SRAM_LB_N, SRAM_WE_N, SRAM_CE_N, SRAM_OE_N
     );
 WB_stage P4 (
         clk, rst, ALU_result4, MEM_R_value4, MEM_R_en_4,
