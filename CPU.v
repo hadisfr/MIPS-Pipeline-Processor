@@ -43,7 +43,7 @@ Forwarding_unit forwarding_unit(
     );
 
 IF_stage P0(
-        clk, rst, Br_taken2, Br_offset, hazard_detected,
+        clk, rst, ~hazard_detected & ~SRAM_freeze, Br_taken2, Br_offset,
         PC0, instruction0
     );
 ID_stage P1(
@@ -66,18 +66,18 @@ WB_stage P4 (
     );
 
 IF_stage_reg Q0(
-        clk, rst, flush, PC0, instruction0, hazard_detected,
+        clk, rst, ~hazard_detected & ~SRAM_freeze, flush, PC0, instruction0,
         PC1, instruction1
     );
 ID_stage_reg Q1(
-        clk, rst, PC1, MEM_src1_fd1, MEM_src2_fd1, dest1, Reg2_1, Val2_1, Val1_1, Br_taken1, EXE_cmd_1, MEM_R_en_1, MEM_W_en_1, WB_en_1,
+        clk, rst, ~SRAM_freeze, PC1, MEM_src1_fd1, MEM_src2_fd1, dest1, Reg2_1, Val2_1, Val1_1, Br_taken1, EXE_cmd_1, MEM_R_en_1, MEM_W_en_1, WB_en_1,
         PC2, MEM_src1_fd2, MEM_src2_fd2, dest2, Reg2_2, Val2_2, Val1_2, Br_taken2, EXE_cmd_2, MEM_R_en_2, MEM_W_en_2, WB_en_2
     );
 EXE_stage_reg Q2(
-        clk, rst, PC2, ALU_result2, ST_value2, dest2, MEM_R_en_2, MEM_W_en_2, WB_en_2,
+        clk, rst, ~SRAM_freeze, PC2, ALU_result2, ST_value2, dest2, MEM_R_en_2, MEM_W_en_2, WB_en_2,
         PC3, ALU_result3, ST_value3, dest3, MEM_R_en_3, MEM_W_en_3, WB_en_3
     );
 MEM_stage_reg Q3(
-        clk, rst, PC3, ALU_result3, MEM_R_value3, dest3, MEM_R_en_3, WB_en_3,
+        clk, rst, ~SRAM_freeze, PC3, ALU_result3, MEM_R_value3, dest3, MEM_R_en_3, WB_en_3,
         PC4, ALU_result4, MEM_R_value4, dest4, MEM_R_en_4, WB_en_4
     );

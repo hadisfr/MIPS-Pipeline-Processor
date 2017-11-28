@@ -23,6 +23,14 @@ module SRAM_CTRL(
     assign SRAM_ADDR = {8'b0, addr[9:2], 2'b0};
     assign SRAM_WE_N = ~MEM_W_en;
     assign SRAM_DQ = MEM_W_en ? data_in[15:0] : 16'bz;
-    assign data_out = MEM_R_en ? {{16{SRAM_DQ{15}}}, SRAM_DQ} : 32'bz;
-    assign freeze =0;
+    assign data_out = MEM_R_en ? {{16{SRAM_DQ[15]}}, SRAM_DQ} : 32'bz;
+
+    wire mem_in_use;
+    assign mem_in_use = MEM_R_en | MEM_W_en;
+    wire [1:0] cnt_out;
+    wire cnt_en, cnt_rst;
+    Counter #(2) cnt(clk, rst, mem_in_use, cnt_out);
+    assign freeze = mem_in_use && cnt_out != 2'd3;
+
+
 endmodule

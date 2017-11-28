@@ -23,8 +23,16 @@
 `include "Forwarding_unit.v"
 `include "MUX_3_1.v"
 `include "SRAM_CTRL.v"
+`include "Counter.v"
 
 module testbench ();
+    // reg   [15:0]  SRAM_DQ;   //  SRAM Data bus 16 Bits
+    // reg   [17:0]  SRAM_ADDR; //  SRAM Address bus 18 Bits
+    // reg          SRAM_UB_N; //  SRAM High-byte Data Mask 
+    // reg          SRAM_LB_N; //  SRAM Low-byte Data Mask 
+    // reg          SRAM_WE_N; //  SRAM Write Enable
+    // reg          SRAM_CE_N; //  SRAM Chip Enable
+    // reg          SRAM_OE_N;  //  SRAM Output Enable
     reg clk, rst, has_forwarding;
     /* verilator lint_off STMTDLY */
     initial begin
