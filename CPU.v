@@ -66,7 +66,7 @@ WB_stage P4 (
     );
 
 IF_stage_reg Q0(
-        clk, rst | flush, ~hazard_detected & ~SRAM_freeze, PC0, instruction0,
+        clk, rst, ~hazard_detected & ~SRAM_freeze, flush, PC0, instruction0,
         PC1, instruction1
     );
 ID_stage_reg Q1(
