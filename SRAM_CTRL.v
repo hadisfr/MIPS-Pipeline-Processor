@@ -1,6 +1,6 @@
 module SRAM_CTRL(
     input clk,    // Clock
-    input rst,  // Asynchronous reset active High
+    input rst,  // Reset active High
     // with MEM_stage
     input [17:0] addr,
     input [31:0] data_in,

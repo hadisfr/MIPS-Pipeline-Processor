@@ -1,6 +1,6 @@
 module Counter #(parameter n = 1) (
     input clk,    // Clock
-    input rst,  // Asynchronous reset active high
+    input rst,  // Reset active high
     input en, // Clock Enable
     output [n - 1:0] out
 );

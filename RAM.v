@@ -1,6 +1,6 @@
 module RAM (
     input clk,    // Clock
-    input rst,  // Asynchronous reset active high
+    input rst,  // Reset active high
     input [31:0] addr_interface,
     input [31:0] data_in,
     input MEM_R_en, MEM_W_en,

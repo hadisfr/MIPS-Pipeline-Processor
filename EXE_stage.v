@@ -1,6 +1,6 @@
 module EXE_stage (
     input clk,    // Clock
-    input rst,  // Asynchronous reset active high
+    input rst,  // Reset active high
     input [31:0] Reg2_2, // ST_value
     input [31:0] val2, val1,
     input [3:0] EXE_cmd,

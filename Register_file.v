@@ -1,6 +1,6 @@
 module Register_file #(parameter n = 32) (
     input clk,    // Clock
-    input rst,  // Asynchronous reset active high
+    input rst,  // Reset active high
     input [4:0] src1, src2, dest,
     input [n-1:0] WB_value,
     input WB_en,

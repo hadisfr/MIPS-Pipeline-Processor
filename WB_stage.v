@@ -1,6 +1,6 @@
 module WB_stage (
     input clk,    // Clock
-    input rst,  // Asynchronous reset active high
+    input rst,  // Reset active high
     input [31:0] ALU_result,
     input [31:0] MEM_R_value,
     input MEM_R_en,

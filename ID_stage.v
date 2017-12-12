@@ -1,6 +1,6 @@
 module ID_stage (
     input clk,    // Clock
-    input rst,  // Asynchronous reset active high
+    input rst,  // Reset active high
     input [31:0] instruction,
     input [31:0] MEM_Reg1, MEM_Reg2,
     input hazard_detected,

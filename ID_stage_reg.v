@@ -1,6 +1,6 @@
 module ID_stage_reg (
     input clk,    // Clock
-    input rst,  // Asynchronous reset active high
+    input rst,  // Reset active high
     input en,
     input [31:0] PC_in,
     input [4:0] MEM_src1_fd_in, MEM_src2_fd_in,

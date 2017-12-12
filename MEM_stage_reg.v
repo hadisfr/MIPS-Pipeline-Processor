@@ -1,6 +1,6 @@
 module MEM_stage_reg (
     input clk,    // Clock
-    input rst,  // Asynchronous reset active high
+    input rst,  // Reset active high
     input en,
     input [31:0] PC_in,
     input [31:0] ALU_result_in,

@@ -1,6 +1,6 @@
 module IF_stage_reg (
     input clk,    // Clock
-    input rst,  // Asynchronous reset active high
+    input rst,  // Reset active high
     input en,
     input flush,
     input [31:0] PC_in,

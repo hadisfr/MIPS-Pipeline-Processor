@@ -1,6 +1,6 @@
 module IF_stage (
     input clk,    // Clock
-    input rst,  // Asynchronous reset active high
+    input rst,  // Reset active high
     input en,
     input Br_taken,
     input [15:0] Br_offset,
