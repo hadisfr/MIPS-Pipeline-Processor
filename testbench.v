@@ -23,6 +23,7 @@
 `include "Forwarding_unit.v"
 `include "MUX_3_1.v"
 `include "SRAM_CTRL.v"
+`include "Cache_CTRL.v"
 `include "Counter.v"
 
 module testbench ();

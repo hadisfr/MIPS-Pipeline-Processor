@@ -15,7 +15,7 @@ module MEM_stage (
     output          SRAM_CE_N, //  SRAM Chip Enable
     output          SRAM_OE_N  //  SRAM Output Enable
 );
-    SRAM_CTRL sram_ctrl (
+    Cache_CTRL cache_ctrl (
         clk, rst,
         ALU_result[17:0], ST_val, MEM_R_en, MEM_W_en, MEM_R_value, freeze,
         SRAM_DQ, SRAM_ADDR, SRAM_UB_N, SRAM_LB_N, SRAM_WE_N, SRAM_CE_N, SRAM_OE_N

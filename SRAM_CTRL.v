@@ -5,14 +5,14 @@ module SRAM_CTRL(
     input [17:0] addr,
     input [31:0] data_in,
     input MEM_R_en, MEM_W_en,
-    output reg [31:0] data_out,
+    output reg [63:0] data_out,
     output freeze,
     // with SRAM
     inout  reg [15:0] SRAM_DQ,   //  SRAM Data bus 16 Bits
     output reg [17:0] SRAM_ADDR, //  SRAM Address bus 18 Bits
     output            SRAM_UB_N, //  SRAM High-byte Data Mask 
     output            SRAM_LB_N, //  SRAM Low-byte Data Mask 
-    output            SRAM_WE_N, //  SRAM Write Enable
+    output reg        SRAM_WE_N, //  SRAM Write Enable
     output            SRAM_CE_N, //  SRAM Chip Enable
     output            SRAM_OE_N  //  SRAM Output Enable
 );
@@ -21,18 +21,31 @@ module SRAM_CTRL(
     assign SRAM_LB_N = 0;
     assign SRAM_CE_N = 0;
     assign SRAM_OE_N = ~MEM_R_en;
-    assign SRAM_WE_N = ~MEM_W_en;
     always @(cnt_out) begin
         case(cnt_out)
             2'd0 : begin
-                SRAM_ADDR = {8'b0, addr[9:1], 1'b0};
+                SRAM_ADDR = {9'b0, addr[9:3], 3'b00};
                 data_out[15:0] = MEM_R_en ? SRAM_DQ : 16'bz;
                 SRAM_DQ = MEM_W_en ? data_in[15:0] : 16'bz;
+                SRAM_WE_N = ~(MEM_W_en & ~addr[2]);
             end
             2'd1 : begin
-                SRAM_ADDR = {8'b0, addr[9:1], 1'b1};
+                SRAM_ADDR = {9'b0, addr[9:3], 3'b01};
                 data_out[31:16] = MEM_R_en ? SRAM_DQ : 16'bz;
                 SRAM_DQ = MEM_W_en ? data_in[31:16] : 16'bz;
+                SRAM_WE_N = ~(MEM_W_en & ~addr[2]);
+            end
+            2'd2 : begin
+                SRAM_ADDR = {9'b0, addr[9:3], 3'b10};
+                data_out[47:32] = MEM_R_en ? SRAM_DQ : 16'bz;
+                SRAM_DQ = MEM_W_en ? data_in[15:0] : 16'bz;
+                SRAM_WE_N = ~(MEM_W_en & addr[2]);
+            end
+            2'd3 : begin
+                SRAM_ADDR = {9'b0, addr[9:3], 3'b11};
+                data_out[63:48] = MEM_R_en ? SRAM_DQ : 16'bz;
+                SRAM_DQ = MEM_W_en ? data_in[31:16] : 16'bz;
+                SRAM_WE_N = ~(MEM_W_en & addr[2]);
             end
         endcase // cnt_out
     end
