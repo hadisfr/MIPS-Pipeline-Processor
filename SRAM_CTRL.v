@@ -24,25 +24,25 @@ module SRAM_CTRL(
     always @(cnt_out) begin
         case(cnt_out)
             2'd0 : begin
-                SRAM_ADDR = {9'b0, addr[9:3], 3'b00};
+                SRAM_ADDR = {9'b0, addr[9:3], 2'b00};
                 data_out[15:0] = MEM_R_en ? SRAM_DQ : 16'bz;
                 SRAM_DQ = MEM_W_en ? data_in[15:0] : 16'bz;
                 SRAM_WE_N = ~(MEM_W_en & ~addr[2]);
             end
             2'd1 : begin
-                SRAM_ADDR = {9'b0, addr[9:3], 3'b01};
+                SRAM_ADDR = {9'b0, addr[9:3], 2'b01};
                 data_out[31:16] = MEM_R_en ? SRAM_DQ : 16'bz;
                 SRAM_DQ = MEM_W_en ? data_in[31:16] : 16'bz;
                 SRAM_WE_N = ~(MEM_W_en & ~addr[2]);
             end
             2'd2 : begin
-                SRAM_ADDR = {9'b0, addr[9:3], 3'b10};
+                SRAM_ADDR = {9'b0, addr[9:3], 2'b10};
                 data_out[47:32] = MEM_R_en ? SRAM_DQ : 16'bz;
                 SRAM_DQ = MEM_W_en ? data_in[15:0] : 16'bz;
                 SRAM_WE_N = ~(MEM_W_en & addr[2]);
             end
             2'd3 : begin
-                SRAM_ADDR = {9'b0, addr[9:3], 3'b11};
+                SRAM_ADDR = {9'b0, addr[9:3], 2'b11};
                 data_out[63:48] = MEM_R_en ? SRAM_DQ : 16'bz;
                 SRAM_DQ = MEM_W_en ? data_in[31:16] : 16'bz;
                 SRAM_WE_N = ~(MEM_W_en & addr[2]);
