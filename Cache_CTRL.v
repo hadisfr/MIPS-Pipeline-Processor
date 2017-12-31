@@ -30,6 +30,7 @@ module Cache_CTRL (
     wire cache_freeze;
     wire SRAM_MEM_en;
     reg SRAM_MEM_R_en, SRAM_MEM_W_en;
+    wire [1:0] cnt_out;
 
     wire [148:0] current_cache;
     assign current_cache = cache[addr_index];
@@ -58,7 +59,7 @@ module Cache_CTRL (
 
     SRAM_CTRL sram_ctrl (
         clk, rst,
-        addr[17:0], data_in, SRAM_MEM_R_en, SRAM_MEM_W_en, data_out_ext_SRAM, SRAM_freeze,
+        addr[17:0], data_in, SRAM_MEM_R_en, SRAM_MEM_W_en, data_out_ext_SRAM, SRAM_freeze, cnt_out,
         SRAM_DQ, SRAM_ADDR, SRAM_UB_N, SRAM_LB_N, SRAM_WE_N, SRAM_CE_N, SRAM_OE_N
     );
 
@@ -79,28 +80,28 @@ module Cache_CTRL (
         end // reset
         else begin  // logic
             if(MEM_R_en) begin  // read
-                if(freeze) begin
+                if(freeze) begin  // freeze
                     if(cache_freeze) begin  // chache_freeze
                         SRAM_MEM_R_en <= 1;
                         // cache_freeze <= 0;
                     end  // chache_freeze
-                    else begin  // SRAM_freeze
-                        if(cache[addr_index][LRU]) begin  // WAY1
-                            cache[addr_index] <= {
-                                cache[addr_index][WAY_LEN+WAY1_DATA-1:WAY1_DATA],
-                                1'b1, addr_tag, data_out_ext_SRAM,
-                                1'b0
-                            };
-                        end  // WAY1
-                        else begin  // WAY0
-                            cache[addr_index] <= {
-                                1'b1, addr_tag, data_out_ext_SRAM,
-                                cache[addr_index][WAY_LEN+WAY0_DATA-1:WAY0_DATA],
-                                1'b1
-                            };
-                        end  // WAY0
-                    end  // SRAM_freeze
-                end
+                end  // freeze
+                else if(cnt_out == 2'd3) begin  // SRAM_freeze
+                    if(cache[addr_index][LRU]) begin  // WAY1
+                        cache[addr_index] <= {
+                            cache[addr_index][WAY_LEN+WAY1_DATA-1:WAY1_DATA],
+                            1'b1, addr_tag, data_out_ext_SRAM,
+                            1'b0
+                        };
+                    end  // WAY1
+                    else begin  // WAY0
+                        cache[addr_index] <= {
+                            1'b1, addr_tag, data_out_ext_SRAM,
+                            cache[addr_index][WAY_LEN+WAY0_DATA-1:WAY0_DATA],
+                            1'b1
+                        };
+                    end  // WAY0
+                end  // SRAM_freeze
                 else begin
                     if(
                         cache[addr_index][WAY0_TAG+TAG_LEN-1:WAY0_TAG] == addr_tag

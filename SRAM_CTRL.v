@@ -7,6 +7,7 @@ module SRAM_CTRL(
     input MEM_R_en, MEM_W_en,
     output reg [63:0] data_out,
     output freeze,
+    output [1:0] cnt_out,
     // with SRAM
     inout  reg [15:0] SRAM_DQ,   //  SRAM Data bus 16 Bits
     output reg [17:0] SRAM_ADDR, //  SRAM Address bus 18 Bits
@@ -52,7 +53,6 @@ module SRAM_CTRL(
 
     wire mem_in_use;
     assign mem_in_use = MEM_R_en | MEM_W_en;
-    wire [1:0] cnt_out;
     wire cnt_en, cnt_rst;
     Counter #(2) cnt(clk, rst, mem_in_use, cnt_out);
     assign freeze = mem_in_use && cnt_out != 2'd3;
