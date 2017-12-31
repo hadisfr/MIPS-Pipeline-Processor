@@ -31,6 +31,22 @@ module Cache_CTRL (
     wire SRAM_MEM_en;
     reg SRAM_MEM_R_en, SRAM_MEM_W_en;
 
+    wire [148:0] current_cache;
+    assign current_cache = cache[addr_index];
+    reg current_LRU;
+    reg [DATA_LEN-1:0] current_WAY0_DATA, current_WAY1_DATA;
+    reg [TAG_LEN-1:0] current_WAY0_TAG, current_WAY1_TAG;
+    reg current_WAY0_VAL, current_WAY1_VAL;
+    always @(posedge clk) begin
+        current_LRU <= current_cache[LRU];
+        current_WAY0_DATA <= current_cache[WAY0_DATA+DATA_LEN-1:WAY0_DATA];
+        current_WAY1_DATA <= current_cache[WAY1_DATA+DATA_LEN-1:WAY1_DATA];
+        current_WAY0_VAL <= current_cache[WAY0_VAL];
+        current_WAY1_VAL <= current_cache[WAY1_VAL];
+        current_WAY0_TAG <= current_cache[WAY0_TAG+TAG_LEN-1:WAY0_TAG];
+        current_WAY1_TAG <= current_cache[WAY1_TAG+TAG_LEN-1:WAY1_TAG];
+    end
+
     assign addr_index = addr[INDEX_LEN+3-1:3];
     assign addr_tag = addr[TAG_LEN+INDEX_LEN+3-1:INDEX_LEN+3];
     assign addr_select = addr[2];
