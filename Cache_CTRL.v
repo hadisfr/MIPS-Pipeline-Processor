@@ -101,6 +101,7 @@ module Cache_CTRL (
                             1'b1
                         };
                     end  // WAY0
+                    SRAM_MEM_R_en <= 0;
                 end  // SRAM_freeze
                 else begin
                     if(
